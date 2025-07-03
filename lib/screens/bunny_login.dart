@@ -155,7 +155,7 @@ class _BunnyLoginScreenState extends State<BunnyLoginScreen> {
                               borderSide: const BorderSide(
                                 color: Color(0xffea552e),
                               ),
-                              borderRadius: BorderRadius.circular(100),
+                              borderRadius: BorderRadius.circular(60),
                             ),
                           ),
                         ),
