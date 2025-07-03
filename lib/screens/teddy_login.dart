@@ -4,14 +4,14 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rive/rive.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class TeddyLoginScreen extends StatefulWidget {
+  const TeddyLoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<TeddyLoginScreen> createState() => _TeddyLoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _TeddyLoginScreenState extends State<TeddyLoginScreen> {
   late String animationURL;
   Artboard? _teddyArtboard;
   SMITrigger? successTrigger, failTrigger;
