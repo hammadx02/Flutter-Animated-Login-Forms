@@ -77,8 +77,8 @@ class _ManLoginScreenState extends State<ManLoginScreen> {
   void login() {
     Check?.change(false);
     glassesOn?.change(false);
-    if (_emailController.text == "zain@gmail.com" &&
-        _passwordController.text == "zain") {
+    if (_emailController.text == "hammad@gmail.com" &&
+        _passwordController.text == "hammad") {
       sucess?.fire();
     } else {
       fail?.fire();
@@ -90,13 +90,6 @@ class _ManLoginScreenState extends State<ManLoginScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff313131),
-        title: Text(
-          '@zain_dev_',
-          style: GoogleFonts.aBeeZee(
-              fontWeight: FontWeight.bold,
-              fontSize: 25,
-              color: Color(0xffd7d9f4)),
-        ),
       ),
       backgroundColor: const Color(0xff313131),
       body: Center(
