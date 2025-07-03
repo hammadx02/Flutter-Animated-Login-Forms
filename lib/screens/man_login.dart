@@ -78,8 +78,8 @@ class _ManLoginScreenState extends State<ManLoginScreen> {
   void login() {
     isPassword?.change(false);
     isFocus?.change(false);
-    if (_emailController.text == "zain@gmail.com" &&
-        _passwordController.text == "zain") {
+    if (_emailController.text == "hammad@gmail.com" &&
+        _passwordController.text == "hammad") {
       loginSuccessTrigger?.fire();
       // Trigger additional animation for success
       // Example: Increase scale or opacity (if applicable)
@@ -95,13 +95,13 @@ class _ManLoginScreenState extends State<ManLoginScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xffd6e2ea),
-        title: Text(
-          '@zain_dev',
-          style: GoogleFonts.aBeeZee(
-              color: Color(0xffea552e),
-              fontWeight: FontWeight.bold,
-              fontSize: 26),
-        ),
+        // title: Text(
+        //   '@zain_dev',
+        //   style: GoogleFonts.aBeeZee(
+        //       color: Color(0xffea552e),
+        //       fontWeight: FontWeight.bold,
+        //       fontSize: 26),
+        // ),
       ),
       backgroundColor: const Color(0xffd6e2ea),
       body: Center(
