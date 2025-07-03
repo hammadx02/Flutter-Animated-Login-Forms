@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rive_teddy_bear/screens/bunny_login.dart';
 import 'package:rive_teddy_bear/screens/man_login.dart';
-import 'screens/teddy_login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +16,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: ManLoginScreen(),
+      home: const ManLoginScreen(),
     );
   }
 }
