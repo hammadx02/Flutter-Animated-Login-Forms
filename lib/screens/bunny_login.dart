@@ -95,13 +95,6 @@ class _BunnyLoginScreenState extends State<BunnyLoginScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xffd6e2ea),
-        // title: Text(
-        //   '@zain_dev',
-        //   style: GoogleFonts.aBeeZee(
-        //       color: Color(0xffea552e),
-        //       fontWeight: FontWeight.bold,
-        //       fontSize: 26),
-        // ),
       ),
       backgroundColor: const Color(0xffd6e2ea),
       body: Center(
