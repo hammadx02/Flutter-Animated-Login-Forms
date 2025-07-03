@@ -14,9 +14,9 @@ class ManLoginScreen extends StatefulWidget {
 class _ManLoginScreenState extends State<ManLoginScreen> {
   late String animationURL;
   Artboard? _teddyArtboard;
-  SMITrigger? loginSuccessTrigger, loginFailTrigger;
-  SMIBool? isFocus, isPassword;
-  SMINumber? eyeTrack;
+  SMITrigger? sucess, fail;
+  SMIBool? glassesOn, Check;
+  SMINumber? look;
 
   bool _isChecked = false;
 
@@ -29,64 +29,59 @@ class _ManLoginScreenState extends State<ManLoginScreen> {
     super.initState();
     animationURL = defaultTargetPlatform == TargetPlatform.android ||
             defaultTargetPlatform == TargetPlatform.iOS
-        ? 'assets/animations/bunny_login.riv'
-        : 'animations/bunny_login.riv';
+        ? 'assets/animations/man_login.riv'
+        : 'animations/man_login.riv';
 
-    rootBundle.load(animationURL).then(
-      (data) {
-        final file = RiveFile.import(data);
-        final artboard = file.mainArtboard;
-        stateMachineController =
-            StateMachineController.fromArtboard(artboard, "State Machine 1");
-        if (stateMachineController != null) {
-          artboard.addController(stateMachineController!);
+    rootBundle.load(animationURL).then((data) {
+      final file = RiveFile.import(data);
+      final artboard = file.mainArtboard;
+      stateMachineController =
+          StateMachineController.fromArtboard(artboard, "State Machine 1");
+      if (stateMachineController != null) {
+        artboard.addController(stateMachineController!);
 
-          for (var element in stateMachineController!.inputs) {
-            if (element.name == "login_success") {
-              loginSuccessTrigger = element as SMITrigger;
-            } else if (element.name == "login_fail") {
-              loginFailTrigger = element as SMITrigger;
-            } else if (element.name == "isFocus") {
-              isFocus = element as SMIBool;
-            } else if (element.name == "IsPassword") {
-              isPassword = element as SMIBool;
-            } else if (element.name == "eye_track") {
-              eyeTrack = element as SMINumber;
-            }
+        for (var element in stateMachineController!.inputs) {
+          if (element.name == "sucess") {
+            sucess = element as SMITrigger;
+          } else if (element.name == "fail") {
+            fail = element as SMITrigger;
+          } else if (element.name == "glasses_on") {
+            glassesOn = element as SMIBool;
+          } else if (element.name == "Check") {
+            Check = element as SMIBool;
+          } else if (element.name == "look") {
+            look = element as SMINumber;
           }
         }
+      }
 
-        setState(() => _teddyArtboard = artboard);
-      },
-    );
+      setState(() => _teddyArtboard = artboard);
+    });
   }
 
   void handleFocus() {
-    isFocus?.change(true);
+    Check?.change(true);
+    glassesOn?.change(false); // Reset glasses on state when focusing
   }
 
   void handlePasswordFocus() {
-    isFocus?.change(false);
-    isPassword?.change(true);
-    eyeTrack?.change(0);
+    Check?.change(false);
+    glassesOn?.change(true);
+    look?.change(0); // Reset eye tracking when focusing on password
   }
 
   void moveEyeTrack(val) {
-    eyeTrack?.change(val.length.toDouble());
+    look?.change(val.length.toDouble());
   }
 
   void login() {
-    isPassword?.change(false);
-    isFocus?.change(false);
-    if (_emailController.text == "hammad@gmail.com" &&
-        _passwordController.text == "hammad") {
-      loginSuccessTrigger?.fire();
-      // Trigger additional animation for success
-      // Example: Increase scale or opacity (if applicable)
+    Check?.change(false);
+    glassesOn?.change(false);
+    if (_emailController.text == "zain@gmail.com" &&
+        _passwordController.text == "zain") {
+      sucess?.fire();
     } else {
-      loginFailTrigger?.fire();
-      // Trigger additional animation for failure
-      // Example: Shake effect or color change (if applicable)
+      fail?.fire();
     }
   }
 
@@ -94,24 +89,24 @@ class _ManLoginScreenState extends State<ManLoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xffd6e2ea),
-        // title: Text(
-        //   '@zain_dev',
-        //   style: GoogleFonts.aBeeZee(
-        //       color: Color(0xffea552e),
-        //       fontWeight: FontWeight.bold,
-        //       fontSize: 26),
-        // ),
+        backgroundColor: Color(0xff313131),
+        title: Text(
+          '@zain_dev_',
+          style: GoogleFonts.aBeeZee(
+              fontWeight: FontWeight.bold,
+              fontSize: 25,
+              color: Color(0xffd7d9f4)),
+        ),
       ),
-      backgroundColor: const Color(0xffd6e2ea),
+      backgroundColor: const Color(0xff313131),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (_teddyArtboard != null)
               SizedBox(
-                width: 500, // Increased width
-                height: 400, // Increased height
+                width: 500, // Adjusted width
+                height: 400, // Adjusted height
                 child: Rive(
                   artboard: _teddyArtboard!,
                   fit: BoxFit.fitWidth,
@@ -123,7 +118,7 @@ class _ManLoginScreenState extends State<ManLoginScreen> {
               padding: const EdgeInsets.only(bottom: 15),
               margin: const EdgeInsets.only(bottom: 15 * 4),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Color(0xffd7d9f4),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Column(
@@ -132,30 +127,30 @@ class _ManLoginScreenState extends State<ManLoginScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: Column(
                       children: [
-                        const SizedBox(height: 15 * 2),
+                        const SizedBox(height: 30), // Space before TextField
                         TextField(
                           controller: _emailController,
                           onTap: handleFocus,
                           onChanged: moveEyeTrack,
                           keyboardType: TextInputType.emailAddress,
                           style: GoogleFonts.poppins(fontSize: 14),
-                          cursorColor: const Color(0xffea552e),
-                          decoration: InputDecoration(
+                          cursorColor: const Color(0xff000458),
+                          decoration: const InputDecoration(
                             hintText: "Email",
-                            hintStyle: GoogleFonts.aclonica(
-                                fontSize: 14, fontWeight: FontWeight.w700),
                             filled: true,
-                            border: const OutlineInputBorder(
+                            border: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(10),
                               ),
                             ),
-                            focusColor: const Color(0xffea552e),
+                            focusColor: Color(0xff000458),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Color(0xffea552e),
+                              borderSide: BorderSide(
+                                color: Color(0xff000458),
                               ),
-                              borderRadius: BorderRadius.circular(100),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
                             ),
                           ),
                         ),
@@ -166,23 +161,23 @@ class _ManLoginScreenState extends State<ManLoginScreen> {
                           keyboardType: TextInputType.visiblePassword,
                           obscureText: true,
                           style: GoogleFonts.poppins(fontSize: 14),
-                          cursorColor: const Color(0xffea552e),
-                          decoration: InputDecoration(
+                          cursorColor: const Color(0xff000458),
+                          decoration: const InputDecoration(
                             hintText: "Password",
-                            hintStyle: GoogleFonts.aclonica(
-                                fontSize: 14, fontWeight: FontWeight.w700),
                             filled: true,
-                            border: const OutlineInputBorder(
+                            border: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(10),
                               ),
                             ),
-                            focusColor: const Color(0xffea552e),
+                            focusColor: Color(0xff000458),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Color(0xffea552e),
+                              borderSide: BorderSide(
+                                color: Color(0xff000458),
                               ),
-                              borderRadius: BorderRadius.circular(100),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
                             ),
                           ),
                         ),
@@ -193,17 +188,14 @@ class _ManLoginScreenState extends State<ManLoginScreen> {
                           children: [
                             Row(
                               children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(90),
-                                  child: Checkbox(
-                                    activeColor: const Color(0xffea552e),
-                                    value: _isChecked,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _isChecked = value!;
-                                      });
-                                    },
-                                  ),
+                                Checkbox(
+                                  activeColor: const Color(0xff000458),
+                                  value: _isChecked,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _isChecked = value!;
+                                    });
+                                  },
                                 ),
                                 Text(
                                   "Remember me",
@@ -214,7 +206,7 @@ class _ManLoginScreenState extends State<ManLoginScreen> {
                             ElevatedButton(
                               onPressed: login,
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xffea552e),
+                                backgroundColor: const Color(0xff000458),
                               ),
                               child: Text(
                                 "Login",
