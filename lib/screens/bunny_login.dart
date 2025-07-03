@@ -78,8 +78,8 @@ class _BunnyLoginScreenState extends State<BunnyLoginScreen> {
   void login() {
     isPassword?.change(false);
     isFocus?.change(false);
-    if (_emailController.text == "zain@gmail.com" &&
-        _passwordController.text == "zain") {
+    if (_emailController.text == "hammadgmail.com" &&
+        _passwordController.text == "hammad") {
       loginSuccessTrigger?.fire();
       // Trigger additional animation for success
       // Example: Increase scale or opacity (if applicable)
