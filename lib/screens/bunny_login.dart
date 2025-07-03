@@ -135,7 +135,7 @@ class _BunnyLoginScreenState extends State<BunnyLoginScreen> {
                           cursorColor: const Color(0xffea552e),
                           decoration: InputDecoration(
                             hintText: "Email",
-                            hintStyle: GoogleFonts.aclonica(
+                            hintStyle: GoogleFonts.poppins(
                                 fontSize: 14, fontWeight: FontWeight.w700),
                             filled: true,
                             border: const OutlineInputBorder(
@@ -148,7 +148,7 @@ class _BunnyLoginScreenState extends State<BunnyLoginScreen> {
                               borderSide: const BorderSide(
                                 color: Color(0xffea552e),
                               ),
-                              borderRadius: BorderRadius.circular(60),
+                              borderRadius: BorderRadius.circular(10),
                             ),
                           ),
                         ),
@@ -162,7 +162,7 @@ class _BunnyLoginScreenState extends State<BunnyLoginScreen> {
                           cursorColor: const Color(0xffea552e),
                           decoration: InputDecoration(
                             hintText: "Password",
-                            hintStyle: GoogleFonts.aclonica(
+                            hintStyle: GoogleFonts.poppins(
                                 fontSize: 14, fontWeight: FontWeight.w700),
                             filled: true,
                             border: const OutlineInputBorder(
@@ -175,7 +175,7 @@ class _BunnyLoginScreenState extends State<BunnyLoginScreen> {
                               borderSide: const BorderSide(
                                 color: Color(0xffea552e),
                               ),
-                              borderRadius: BorderRadius.circular(100),
+                              borderRadius: BorderRadius.circular(10),
                             ),
                           ),
                         ),
