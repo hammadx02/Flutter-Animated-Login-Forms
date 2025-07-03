@@ -325,7 +325,7 @@ class _KochaloLoginScreenState extends State<KochaloLoginScreen> {
   Widget build(BuildContext context) {
     const darkBackground = Color(0xFF121212);
     const cardColor = Color(0xFF1E1E1E);
-    const primaryColor = Color(0xffea552e);
+    const primaryColor = Color(0xFFA67542);
     const inputFill = Color(0xFF2C2C2C);
 
     return Scaffold(
